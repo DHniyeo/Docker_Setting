@@ -32,8 +32,6 @@ RUN groupadd -g ${host_gid} ${USERNAME} || true && \
 COPY scripts/ /tmp/scripts/
 RUN chmod +x /tmp/scripts/*.sh && \
     /tmp/scripts/setup_bashrc.sh ${USERNAME} && \
-    /tmp/scripts/setup_ssh.sh ${USERNAME} && \
-    /tmp/scripts/setup_devices.sh ${USERNAME} && \
     rm -rf /tmp/scripts
 
 USER ${USERNAME}

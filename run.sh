@@ -10,4 +10,5 @@ fi
 mkdir -p ${PJT_PATH}
 
 docker run --rm -it \
-    -v /home/`whoami`:/home/`whoami` --net=host `whoami`-yocto \
+    -v ${PJT_PATH}:/home/dhyeo/TDM-CC \
+    ${DOCKER_IMAGE_TAG}
