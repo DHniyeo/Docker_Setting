@@ -9,8 +9,10 @@ fi
 
 mkdir -p ${PJT_PATH}
 
-# 프로젝트 폴더 연결
+DEVICE_ARGS=$(./scripts/setup_devices.sh)
 
 docker run --rm -it \
-    -v ${PJT_PATH}:/home/dhyeo/TDM-CC \
+    -v ${PJT_PATH}:/home/$(whoami)/${PJT_NAME} \
+    -w /home/$(whoami)/${PJT_NAME} \
+    $DEVICE_ARGS \
     ${DOCKER_IMAGE_TAG}
