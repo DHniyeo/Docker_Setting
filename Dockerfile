@@ -14,7 +14,7 @@ RUN apt update && apt install -y \
     gawk wget git diffstat unzip texinfo gcc-multilib build-essential \
     chrpath socat cpio python3 python3-pip xz-utils debianutils \
     iputils-ping python3-git python3-jinja2 libegl1-mesa locales sudo \
-    curl python-is-python3 tree && \
+    curl python-is-python3 tree vim && \
     locale-gen en_US.UTF-8 && \
     ln -sf bash /bin/sh && \
     apt clean && rm -rf /var/lib/apt/lists/*
@@ -31,8 +31,11 @@ RUN groupadd -g ${host_gid} ${USERNAME} || true && \
 # Script ADD
 COPY scripts/ /tmp/scripts/
 RUN chmod +x /tmp/scripts/*.sh && \
-    /tmp/scripts/setup_devices_package.sh && \
+    /tmp/scripts/setup_package_devices.sh && \
+    /tmp/scripts/setup_package_yocto.sh && \
     /tmp/scripts/setup_bashrc.sh ${USERNAME} && \
+    /tmp/scripts/setup_git.sh ${USERNAME} && \
+    /tmp/scripts/setup_ssh.sh ${USERNAME} && \
     rm -rf /tmp/scripts
 
 USER ${USERNAME}

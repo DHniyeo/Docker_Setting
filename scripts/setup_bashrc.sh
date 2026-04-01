@@ -46,6 +46,7 @@ alias ll='ls -al --color=auto'
 alias gs='git status'
 alias gd='git diff'
 alias gcp='git cherry-pick'
+alias his="history | sed 's/^[ ]*[0-9]*[ ]*//'"
 EOF
 
 chown $TARGET_USER:$TARGET_USER "$TARGET_HOME/.bashrc"
