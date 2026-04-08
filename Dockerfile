@@ -2,6 +2,9 @@ FROM ubuntu:22.04
 
 # 필수 변수 및 환경 설정
 ARG USERNAME
+ARG GIT_USER_EMAIL
+ARG GIT_USER_NAME
+
 ARG host_uid=1000
 ARG host_gid=1000
 
@@ -34,7 +37,7 @@ RUN chmod +x /tmp/scripts/*.sh && \
     /tmp/scripts/setup_package_devices.sh && \
     /tmp/scripts/setup_package_yocto.sh && \
     /tmp/scripts/setup_bashrc.sh ${USERNAME} && \
-    /tmp/scripts/setup_git.sh ${USERNAME} && \
+    /tmp/scripts/setup_git.sh ${USERNAME} ${GIT_USER_EMAIL} ${GIT_USER_NAME} && \
     /tmp/scripts/setup_ssh.sh ${USERNAME} && \
     rm -rf /tmp/scripts
 

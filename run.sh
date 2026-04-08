@@ -9,12 +9,12 @@ fi
 
 mkdir -p ${PJT_PATH}
 
-DEVICE_ARGS=$(./scripts/setup_devices.sh)
-SSH_ARGS=$(./scripts/setup_ssh_args.sh)
+DEVICE_ARGS=$(./scripts/run_arg_setup_devices.sh)
+SSH_ARGS=$(./scripts/run_arg_setup_ssh.sh)
 
 docker run --rm -it \
-    -v ${PJT_PATH}:/home/$(whoami)/${PJT_NAME} \
-    -w /home/$(whoami)/${PJT_NAME} \
+    -v ${PJT_PATH}:${PJT_PATH}\
+    -w ${PJT_PATH}\
     $DEVICE_ARGS \
     ${SSH_ARGS} \
     ${DOCKER_IMAGE_TAG}
